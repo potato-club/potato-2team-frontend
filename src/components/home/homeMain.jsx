@@ -1,7 +1,7 @@
 import React from "react";
 
 const homeMain = () => {
-  return <div>main</div>;
+  return <div>show todolist</div>;
 };
 
 export default homeMain;
