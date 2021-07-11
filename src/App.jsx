@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
-import LoginPage from "./components/login/pages/LoginPage.jsx";
+import LoginPage from "./components/login/pages/LoginPage";
 import mainPage from "./components/home/homeMain";
-import RegisterPage from "./components/login/pages/RegisterPage.jsx";
+import RegisterPage from "./components/login/pages/RegisterPage";
 
 
 const App = () => {

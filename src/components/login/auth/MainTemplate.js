@@ -22,20 +22,20 @@ const Wrapper = styled.div`
 `;
 
 const BannerWrapper = styled.div`
-    background-color: #ffd5d9;
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom 15px;
+  background-color: #ffd5d9;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom 15px;
     `;
 
 const Banner = styled(Link)`
-    color: white;
-    font-family: fantasy;
-    font-size: 2.4rem;
-    letter-spacing: 5px;
-    text-decoration: none;
+  color: white;
+  font-family: fantasy;
+  font-size: 2.4rem;
+  letter-spacing: 5px;
+  text-decoration: none;
 `;
 
 
@@ -56,7 +56,7 @@ const LoginBox = styled.form`
 const MainTemplate = ({ children }) => {
   return (
     <>
-      <GlobalStyle></GlobalStyle>
+      <GlobalStyle />
       <Wrapper>
           <LoginBox>
            <BannerWrapper>
