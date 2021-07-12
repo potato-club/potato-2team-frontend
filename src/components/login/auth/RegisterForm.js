@@ -86,11 +86,13 @@ const RegisterForm = () => {
          <Label>비밀번호</Label>
             <Input 
                 name="pwd"
+                type="password"
                 placeholder="비밀번호를 입력해주세요."    
             />
          <Label>비밀번호 확인</Label>
             <Input
                 name="pwdcorrect"
+                type="password"
                 placeholder="비밀번호를 다시 입력해주세요."
             />
          <RegisterButton>회원가입</RegisterButton>

@@ -74,6 +74,7 @@ const LoginForm = () => {
     <Label>비밀번호</Label>
     <Input
       name="password"
+      type="password"
       placeholder="비밀번호"
     />
     <LoginButton>로그인</LoginButton>
