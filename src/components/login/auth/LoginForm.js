@@ -49,6 +49,7 @@ const Sign = styled(Link)`
   margin-top: 1rem;
   text-align: right;
   color: grey;
+  text-decoration: none;
 `;
 
 const Label = styled.div`
