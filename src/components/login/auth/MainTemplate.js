@@ -47,7 +47,6 @@ const BannerWrapper = styled.div`
 
 const Banner = styled(Link)`
   color: white;
-  font-family: fantasy;
   font-size: 2.4rem;
   letter-spacing: 5px;
   text-decoration: none;
