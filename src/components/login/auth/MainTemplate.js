@@ -1,16 +1,20 @@
 import React from 'react';
 import styled, {createGlobalStyle} from 'styled-components';
 import { Link } from 'react-router-dom';
+import '../font/font.scss'
 
 const GlobalStyle = createGlobalStyle`
   * {
       margin: 0;
       padding: 0;
     }
+    }
   body, html, #root {
     height: 100%;
     background: #FFB6C1;
+    font-family: 'Cafe24Ssukssuk';
   }
+  
 `;
 
 const Wrapper = styled.div`
@@ -19,6 +23,17 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
+`;
+
+const LoginBox = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  max-width: 414px;
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: antiquewhite;
 `;
 
 const BannerWrapper = styled.div`
@@ -39,16 +54,7 @@ const Banner = styled(Link)`
 `;
 
 
-const LoginBox = styled.form`
-  margin: 0 auto;
-  width: 100%;
-  max-width: 414px;
-  padding: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background-color: antiquewhite;
-`;
+
 
 
 
@@ -58,13 +64,13 @@ const MainTemplate = ({ children }) => {
     <>
       <GlobalStyle />
       <Wrapper>
-          <LoginBox>
-           <BannerWrapper>
-           <Banner>TodoList</Banner>
-           </BannerWrapper>
-           {children}
-          </LoginBox>
-        </Wrapper>;
+        <LoginBox>
+          <BannerWrapper>
+          <Banner>TodoList</Banner>
+          </BannerWrapper>
+          {children}
+       </LoginBox>
+      </Wrapper>;
     </>
   );
 };
