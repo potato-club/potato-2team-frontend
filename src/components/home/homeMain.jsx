@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
-import Content from "./content";
+import TodoContent from "./todoContent";
+import DoneContent from "./doneContent";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -57,22 +58,27 @@ const UserName = styled.div`
   background-color: white;
 `;
 
-const homeMain = () => {
+const HomeMain = () => {
+  const [showTodoDone, setShowTodoDone] = useState("todo");
   return (
     <Wrapper>
       <GlobalStyle />
       <HomeWrap>
         <HeaderWrap>
           <ContentStateWrap>
-            <TodoDoneButton>Todo</TodoDoneButton>
-            <TodoDoneButton>Done</TodoDoneButton>
+            <TodoDoneButton onClick={() => setShowTodoDone("todo")}>
+              Todo
+            </TodoDoneButton>
+            <TodoDoneButton onClick={() => setShowTodoDone("done")}>
+              Done
+            </TodoDoneButton>
           </ContentStateWrap>
           <UserName>UserName</UserName>
         </HeaderWrap>
-        <Content />
+        {showTodoDone === "todo" ? <TodoContent /> : <DoneContent />}
       </HomeWrap>
     </Wrapper>
   );
 };
 
-export default homeMain;
+export default HomeMain;

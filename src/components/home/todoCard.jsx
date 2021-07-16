@@ -20,7 +20,7 @@ const CardWrap = styled.div`
 
 const TopWrap = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 32px;
   background-color: #ffffff7d;
 `;
