@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+export const DoneContent = () => {
+  return <ContentWrap />;
+};
+
+export default DoneContent;
+
 const ContentWrap = styled.div`
   display: flex;
   flex-direction: row;
@@ -10,9 +16,3 @@ const ContentWrap = styled.div`
   border-radius: 0 0 32px 32px;
   height: 800px;
 `;
-
-export const DoneContent = () => {
-  return <ContentWrap />;
-};
-
-export default DoneContent;

@@ -6,6 +6,30 @@ import {
   AiOutlineDelete,
 } from "react-icons/ai";
 
+const todoCard = ({ color, todoContent, date }) => {
+  return (
+    <CardWrap color={color}>
+      <TopWrap>
+        <IConButton>
+          <AiOutlineEdit size="24" />
+        </IConButton>
+        <IConButton>
+          <AiOutlineCheckCircle size="24" />
+        </IConButton>
+      </TopWrap>
+      <MiddleWarp>{todoContent}</MiddleWarp>
+      <BottomWarp>
+        <CreateDate>{date}</CreateDate>
+        <IConButton>
+          <AiOutlineDelete size="24" />
+        </IConButton>
+      </BottomWarp>
+    </CardWrap>
+  );
+};
+
+export default todoCard;
+
 const CardWrap = styled.div`
   width: 200px;
   height: 160px;
@@ -46,27 +70,3 @@ const CreateDate = styled.div`
   padding-top: 8px;
   padding-left: 8px;
 `;
-
-const todoCard = ({ color, todoContent, date }) => {
-  return (
-    <CardWrap color={color}>
-      <TopWrap>
-        <IConButton>
-          <AiOutlineEdit size="24" />
-        </IConButton>
-        <IConButton>
-          <AiOutlineCheckCircle size="24" />
-        </IConButton>
-      </TopWrap>
-      <MiddleWarp>{todoContent}</MiddleWarp>
-      <BottomWarp>
-        <CreateDate>{date}</CreateDate>
-        <IConButton>
-          <AiOutlineDelete size="24" />
-        </IConButton>
-      </BottomWarp>
-    </CardWrap>
-  );
-};
-
-export default todoCard;

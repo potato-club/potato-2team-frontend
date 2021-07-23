@@ -66,13 +66,13 @@ const TodoContent = () => {
   }, [todoList.addTodoCard]);
 
   const onClickAddTodo = (addItem) => {
-    //통신처리
-    let temp = todoList.concat({
-      color: addItem.color,
-      todoContent: addItem.todoContent,
-      date: "2021.07.15",
-    });
-    setTodoList(temp);
+    setTodoList((prevState) =>
+      prevState.concat({
+        color: addItem.color,
+        todoContent: addItem.todoContent,
+        date: "2021.07.24",
+      })
+    );
   };
 
   return (
@@ -91,21 +91,21 @@ const TodoContent = () => {
           <NoneCard />
         )}
         {todoList.length ? (
-          currentCategory !== "all" ? (
-            todoList.map(({ color, todoContent, date }) =>
-              color === currentCategory ? (
-                <TodoCard color={color} todoContent={todoContent} date={date} />
-              ) : (
-                <NoneCard />
-              )
-            )
-          ) : (
-            todoList.map(({ color, todoContent, date }) => (
-              <TodoCard color={color} todoContent={todoContent} date={date} />
-            ))
-          )
+          todoList.reduce((prev, next, cI) => {
+            if (currentCategory === "all" || next.color === currentCategory) {
+              prev.push(
+                <TodoCard
+                  key={cI}
+                  color={next.color}
+                  todoContent={next.todoContent}
+                  date={next.date}
+                />
+              );
+            }
+            return prev;
+          }, [])
         ) : (
-          <NoneCard />
+          <></>
         )}
       </ShowTodo>
     </ContentWrap>

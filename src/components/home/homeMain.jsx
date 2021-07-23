@@ -4,6 +4,31 @@ import styled, { createGlobalStyle } from "styled-components";
 import TodoContent from "./todoContent";
 import DoneContent from "./doneContent";
 
+const HomeMain = () => {
+  const [showTodoDone, setShowTodoDone] = useState("todo");
+  return (
+    <Wrapper>
+      <GlobalStyle />
+      <HomeWrap>
+        <HeaderWrap>
+          <ContentStateWrap>
+            <TodoDoneButton onClick={() => setShowTodoDone("todo")}>
+              Todo
+            </TodoDoneButton>
+            <TodoDoneButton onClick={() => setShowTodoDone("done")}>
+              Done
+            </TodoDoneButton>
+          </ContentStateWrap>
+          <UserName>UserName</UserName>
+        </HeaderWrap>
+        {showTodoDone === "todo" ? <TodoContent /> : <DoneContent />}
+      </HomeWrap>
+    </Wrapper>
+  );
+};
+
+export default HomeMain;
+
 const GlobalStyle = createGlobalStyle`
   html {
     background: gray;
@@ -57,28 +82,3 @@ const UserName = styled.div`
   border-bottom: none;
   background-color: white;
 `;
-
-const HomeMain = () => {
-  const [showTodoDone, setShowTodoDone] = useState("todo");
-  return (
-    <Wrapper>
-      <GlobalStyle />
-      <HomeWrap>
-        <HeaderWrap>
-          <ContentStateWrap>
-            <TodoDoneButton onClick={() => setShowTodoDone("todo")}>
-              Todo
-            </TodoDoneButton>
-            <TodoDoneButton onClick={() => setShowTodoDone("done")}>
-              Done
-            </TodoDoneButton>
-          </ContentStateWrap>
-          <UserName>UserName</UserName>
-        </HeaderWrap>
-        {showTodoDone === "todo" ? <TodoContent /> : <DoneContent />}
-      </HomeWrap>
-    </Wrapper>
-  );
-};
-
-export default HomeMain;

@@ -1,6 +1,74 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { DefaultColor, Palette } from "../../constants/defaultColor";
+
+const AddTodoCard = ({ setAddTodoCard, onClickAddTodo }) => {
+  const [backgroundColor, setBackgroundColor] = useState(DefaultColor);
+  const [todoContent, setTodoContent] = useState("");
+
+  const onChangeTodoContent = (e) => {
+    if (e.target.value.length < 50) {
+      setTodoContent(e.target.value);
+    }
+  };
+
+  const onClickSaveAddTodo = () => {
+    onClickAddTodo({
+      color: backgroundColor,
+      todoContent: todoContent,
+    });
+    setAddTodoCard(0);
+  };
+
+  const setAddTodoHandler = useCallback(
+    () => setAddTodoCard(0),
+    [setAddTodoCard]
+  );
+  return (
+    <CardWrap color={backgroundColor}>
+      <TopWrap>
+        <Category
+          color={Palette.a}
+          onClick={() => setBackgroundColor(Palette.a)}
+        />
+        <Category
+          color={Palette.e}
+          onClick={() => setBackgroundColor(Palette.e)}
+        />
+        <Category
+          color={Palette.b}
+          onClick={() => setBackgroundColor(Palette.b)}
+        />
+        <Category
+          color={Palette.c}
+          onClick={() => setBackgroundColor(Palette.c)}
+        />
+        <Category
+          color={Palette.d}
+          onClick={() => setBackgroundColor(Palette.d)}
+        />
+        <IConButton>
+          <AiOutlinePlusCircle size="24" onClick={onClickSaveAddTodo} />
+        </IConButton>
+      </TopWrap>
+      <MiddleWarp
+        type="textarea"
+        color={backgroundColor}
+        onChange={onChangeTodoContent}
+        value={todoContent}
+        wrap="on"
+      />
+      <BottomWarp>
+        <IConButton onClick={setAddTodoHandler}>
+          <AiOutlineMinusCircle size="24" />
+        </IConButton>
+      </BottomWarp>
+    </CardWrap>
+  );
+};
+
+export default AddTodoCard;
 
 const CardWrap = styled.div`
   width: 200px;
@@ -56,64 +124,3 @@ const Category = styled.button`
   background-color: ${(props) => props.color};
   color: white;
 `;
-
-const AddTodoCard = ({ setAddTodoCard, onClickAddTodo }) => {
-  const [backgroundColor, setBackgroundColor] = useState("#A7C4DA");
-  const [todoContent, setTodoContent] = useState("");
-
-  const onChangeTodoContent = (e) => {
-    if (e.target.value.length < 50) setTodoContent(e.target.value);
-  };
-
-  const onClickSaveAddTodo = () => {
-    onClickAddTodo({
-      color: backgroundColor,
-      todoContent: todoContent,
-    });
-    setAddTodoCard(0);
-  };
-
-  return (
-    <CardWrap color={backgroundColor}>
-      <TopWrap>
-        <Category
-          color="#A7C4DA"
-          onClick={() => setBackgroundColor("#A7C4DA")}
-        />
-        <Category
-          color="#818D90"
-          onClick={() => setBackgroundColor("#818D90")}
-        />
-        <Category
-          color="#967A6D"
-          onClick={() => setBackgroundColor("#967A6D")}
-        />
-        <Category
-          color="#E5BBB4"
-          onClick={() => setBackgroundColor("#E5BBB4")}
-        />
-        <Category
-          color="#E4D8D3"
-          onClick={() => setBackgroundColor("#E4D8D3")}
-        />
-        <IConButton>
-          <AiOutlinePlusCircle size="24" onClick={onClickSaveAddTodo} />
-        </IConButton>
-      </TopWrap>
-      <MiddleWarp
-        type="textarea"
-        color={backgroundColor}
-        onChange={onChangeTodoContent}
-        value={todoContent}
-        wrap="on"
-      />
-      <BottomWarp>
-        <IConButton onClick={() => setAddTodoCard(0)}>
-          <AiOutlineMinusCircle size="24" />
-        </IConButton>
-      </BottomWarp>
-    </CardWrap>
-  );
-};
-
-export default AddTodoCard;

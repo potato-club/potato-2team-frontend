@@ -1,7 +1,50 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { IoMdAdd } from "react-icons/io";
 import { AiOutlineDelete } from "react-icons/ai";
+import { Palette } from "../../constants/defaultColor";
+
+const Menu = ({ setAddTodoCard, setCurrentCategory }) => {
+  const setAddTodoHandler = useCallback(
+    () => setAddTodoCard(1),
+    [setAddTodoCard]
+  );
+  return (
+    <MenuWrap>
+      <TopMiddleWrap>
+        <AddTodoButton onClick={setAddTodoHandler}>
+          <IoMdAdd size="40" fill="white" />
+        </AddTodoButton>
+        <Category color="black" onClick={() => setCurrentCategory("all")} />
+        <Category
+          color={Palette.a}
+          onClick={() => setCurrentCategory(Palette.a)}
+        />
+        <Category
+          color={Palette.e}
+          onClick={() => setCurrentCategory(Palette.e)}
+        />
+        <Category
+          color={Palette.b}
+          onClick={() => setCurrentCategory(Palette.b)}
+        />
+        <Category
+          color={Palette.c}
+          onClick={() => setCurrentCategory(Palette.c)}
+        />
+        <Category
+          color={Palette.d}
+          onClick={() => setCurrentCategory(Palette.d)}
+        />
+      </TopMiddleWrap>
+      <IConButton>
+        <AiOutlineDelete size="40" fill="black" />
+      </IConButton>
+    </MenuWrap>
+  );
+};
+
+export default Menu;
 
 const MenuWrap = styled.div`
   display: flex;
@@ -46,41 +89,3 @@ const IConButton = styled.div`
   height: 32px;
   margin-bottom: 32px;
 `;
-
-const menu = ({ setAddTodoCard, setCurrentCategory }) => {
-  return (
-    <MenuWrap>
-      <TopMiddleWrap>
-        <AddTodoButton onClick={() => setAddTodoCard(1)}>
-          <IoMdAdd size="40" fill="white" />
-        </AddTodoButton>
-        <Category color="black" onClick={() => setCurrentCategory("all")} />
-        <Category
-          color="#A7C4DA"
-          onClick={() => setCurrentCategory("#A7C4DA")}
-        />
-        <Category
-          color="#818D90"
-          onClick={() => setCurrentCategory("#818D90")}
-        />
-        <Category
-          color="#967A6D"
-          onClick={() => setCurrentCategory("#967A6D")}
-        />
-        <Category
-          color="#E5BBB4"
-          onClick={() => setCurrentCategory("#E5BBB4")}
-        />
-        <Category
-          color="#E4D8D3"
-          onClick={() => setCurrentCategory("#E4D8D3")}
-        />
-      </TopMiddleWrap>
-      <IConButton>
-        <AiOutlineDelete size="40" fill="black" />
-      </IConButton>
-    </MenuWrap>
-  );
-};
-
-export default menu;
