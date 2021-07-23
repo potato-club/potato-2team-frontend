@@ -3,6 +3,24 @@ import styled, {createGlobalStyle} from 'styled-components';
 import { Link } from 'react-router-dom';
 import '../font/font.scss'
 
+const MainTemplate = ({ children }) => {
+  return (
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <LoginBox>
+          <BannerWrapper>
+          <Banner>TodoList</Banner>
+          </BannerWrapper>
+          {children}
+       </LoginBox>
+      </Wrapper>;
+    </>
+  );
+};
+
+export default MainTemplate;
+
 const GlobalStyle = createGlobalStyle`
   * {
       margin: 0;
@@ -53,25 +71,3 @@ const Banner = styled(Link)`
 `;
 
 
-
-
-
-
-
-const MainTemplate = ({ children }) => {
-  return (
-    <>
-      <GlobalStyle />
-      <Wrapper>
-        <LoginBox>
-          <BannerWrapper>
-          <Banner>TodoList</Banner>
-          </BannerWrapper>
-          {children}
-       </LoginBox>
-      </Wrapper>;
-    </>
-  );
-};
-
-export default MainTemplate;

@@ -2,6 +2,53 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
+const LoginForm = () => {
+  const [loginData, setLoginData] = useState({
+    userId: "",
+    userPwd: "",
+  });
+
+  const onChangeForm = (e) => {
+    setLoginData({
+      ...loginData,
+      [e.target.name]: e.target.value,
+    });
+    console.log("롸:", loginData);
+  };
+
+  const loginSubmit = async () => {
+    try {
+      console.log("//await // 보내는 뭐시기 axios~~~~");
+    } catch (e) {
+      console.log("에러발생!");
+    }
+    //다른페이지 넘겨주자
+  };
+
+  return (
+    <>
+      <PageExplans>로그인</PageExplans>
+      <Label>이메일</Label>
+      <Input name="userId" placeholder="이메일" onChange={onChangeForm} />
+      <Label>비밀번호</Label>
+      <Input
+        name="userPwd"
+        type="password"
+        placeholder="비밀번호"
+        onChange={onChangeForm}
+      />
+      <LoginButton onClick={loginSubmit}>로그인</LoginButton>
+      <Sign to="/register">회원가입</Sign>
+    </>
+  );
+};
+
+
+export default LoginForm;
+
+
+
 const PageExplans = styled.div`
   display: flex;
   justify-content: left;
@@ -57,46 +104,3 @@ const Label = styled.div`
   margin-bottom: 0.25rem;
   color: grey;
 `;
-
-const LoginForm = () => {
-  const [loginData, setLoginData] = useState({
-    userId: "",
-    userPwd: "",
-  });
-
-  const onChangeForm = (e) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value,
-    });
-    console.log("롸:", loginData);
-  };
-
-  const loginSubmit = async () => {
-    try {
-      console.log("//await // 보내는 뭐시기 axios~~~~");
-    } catch (e) {
-      console.log("에러발생!");
-    }
-    //다른페이지 넘겨주자
-  };
-
-  return (
-    <>
-      <PageExplans>로그인</PageExplans>
-      <Label>이메일</Label>
-      <Input name="userId" placeholder="이메일" onChange={onChangeForm} />
-      <Label>비밀번호</Label>
-      <Input
-        name="userPwd"
-        type="password"
-        placeholder="비밀번호"
-        onChange={onChangeForm}
-      />
-      <LoginButton onClick={loginSubmit}>로그인</LoginButton>
-      <Sign to="/register">회원가입</Sign>
-    </>
-  );
-};
-
-export default LoginForm;

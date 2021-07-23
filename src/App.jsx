@@ -1,9 +1,14 @@
 import React, { Suspense } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
+import axios from "axios";
 
 import LoginPage from "./components/login/pages/LoginPage";
 import mainPage from "./components/home/homeMain";
 import RegisterPage from "./components/login/pages/RegisterPage";
+
+const API = axios.create({
+  baseURL: "gamsung-coding.shop/",
+})
 
 
 const App = () => {
