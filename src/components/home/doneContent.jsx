@@ -37,20 +37,26 @@ export const DoneContent = () => {
     },
   ]);
 
-  // const receivedData = async () => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       "https://gamsung-coding.shop/api/v1/todo?memberId=1&status=DONE"
-  //     );
-  //     setDoneList(data);
-  //   } catch (e) {
-  //     console.log(`${e.response.data.message}`);
-  //   }
-  // };
+  const receivedData = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://gamsung-coding.shop/api/v1/todo?status=DONE",
+        {
+          Headers: {
+            Authorization:
+              "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ5ZXJpbWtva28iLCJleHAiOjE2MjcxMTQ0NDksIm1lbWJlcklkIjoxfQ.G_1LXXfLpLviaRGGXLBgk3IYhVbbVfq2HM9mozR8YxE",
+          },
+        }
+      );
+      setDoneList(data);
+    } catch (e) {
+      console.log(`${e.response.data.message}`);
+    }
+  };
 
-  // useEffect(() => {
-  //   receivedData();
-  // }, []);
+  useEffect(() => {
+    receivedData();
+  }, []);
 
   return (
     <ContentWrap>
