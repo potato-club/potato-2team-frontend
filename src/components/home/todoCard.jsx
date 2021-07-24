@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   AiOutlineCheckCircle,
   AiOutlineEdit,
   AiOutlineDelete,
 } from "react-icons/ai";
+import { Palette } from "../../constants/defaultColor";
 
-const todoCard = ({ color, todoContent, date }) => {
+const TodoCard = ({ color, todoContent, date }) => {
+  const [backgoundColor, setBackgoundColor] = useState("");
+
+  useEffect(() => {
+    if (color === "BLUE") {
+      setBackgoundColor(Palette.BLUE[0]);
+    } else if (color === "DEEP_BLUE") {
+      setBackgoundColor(Palette.DEEP_BLUE[0]);
+    } else if (color === "BROWN") {
+      setBackgoundColor(Palette.BROWN[0]);
+    } else if (color === "PINK") {
+      setBackgoundColor(Palette.PINK[0]);
+    } else if (color === "OATMEAL") {
+      setBackgoundColor(Palette.OATMEAL[0]);
+    }
+  }, []);
   return (
-    <CardWrap color={color}>
+    <CardWrap color={backgoundColor}>
       <TopWrap>
         <IConButton>
           <AiOutlineEdit size="24" />
@@ -28,7 +44,7 @@ const todoCard = ({ color, todoContent, date }) => {
   );
 };
 
-export default todoCard;
+export default TodoCard;
 
 const CardWrap = styled.div`
   width: 200px;

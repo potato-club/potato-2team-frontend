@@ -10,32 +10,32 @@ const TodoContent = () => {
   const [addTodoCard, setAddTodoCard] = useState(0);
   const [todoList, setTodoList] = useState([
     {
-      color: "#967A6D",
+      color: "BLUE",
       todoContent: "투두 리스트 작성",
       date: "2021.07.10",
     },
     {
-      color: "#A7C4DA",
+      color: "BROWN",
       todoContent: "학교갔다가 잠자기",
       date: "2021.07.10",
     },
     {
-      color: "#E5BBB4",
+      color: "PINK",
       todoContent: "수업 자료 만들기",
       date: "2021.07.10",
     },
     {
-      color: "#967A6D",
+      color: "DEEP_BLUE",
       todoContent: "10시전에 일어나기",
       date: "2021.07.10",
     },
     {
-      color: "#E4D8D3",
+      color: "OATMEAL",
       todoContent: "알고리즘 과제하기",
       date: "2021.07.10",
     },
     {
-      color: "#818D90",
+      color: "PINK",
       todoContent: "중국어 워크북 P.26~29",
       date: "2021.07.10",
     },
