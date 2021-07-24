@@ -17,24 +17,24 @@ const Menu = ({ setAddTodoCard, setCurrentCategory }) => {
         </AddTodoButton>
         <Category color="black" onClick={() => setCurrentCategory("all")} />
         <Category
-          color={Palette.a}
-          onClick={() => setCurrentCategory(Palette.a)}
+          color={Palette.BLUE[0]}
+          onClick={() => setCurrentCategory(Palette.BLUE[0])}
         />
         <Category
-          color={Palette.e}
-          onClick={() => setCurrentCategory(Palette.e)}
+          color={Palette.OATMEAL[0]}
+          onClick={() => setCurrentCategory(Palette.OATMEAL[0])}
         />
         <Category
-          color={Palette.b}
-          onClick={() => setCurrentCategory(Palette.b)}
+          color={Palette.DEEP_BLUE[0]}
+          onClick={() => setCurrentCategory(Palette.DEEP_BLUE[0])}
         />
         <Category
-          color={Palette.c}
-          onClick={() => setCurrentCategory(Palette.c)}
+          color={Palette.BROWN[0]}
+          onClick={() => setCurrentCategory(Palette.BROWN[0])}
         />
         <Category
-          color={Palette.d}
-          onClick={() => setCurrentCategory(Palette.d)}
+          color={Palette.PINK[0]}
+          onClick={() => setCurrentCategory(Palette.PINK[0])}
         />
       </TopMiddleWrap>
       <IConButton>

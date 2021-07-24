@@ -14,10 +14,11 @@ const AddTodoCard = ({ setAddTodoCard, onClickAddTodo }) => {
   };
 
   const onClickSaveAddTodo = () => {
-    onClickAddTodo({
-      color: backgroundColor,
+    let temp = {
+      color: backgroundColor[1],
       todoContent: todoContent,
-    });
+    };
+    onClickAddTodo(temp);
     setAddTodoCard(0);
   };
 
@@ -29,24 +30,24 @@ const AddTodoCard = ({ setAddTodoCard, onClickAddTodo }) => {
     <CardWrap color={backgroundColor}>
       <TopWrap>
         <Category
-          color={Palette.a}
-          onClick={() => setBackgroundColor(Palette.a)}
+          color={Palette.BLUE[0]}
+          onClick={() => setBackgroundColor(Palette.BLUE[0])}
         />
         <Category
-          color={Palette.e}
-          onClick={() => setBackgroundColor(Palette.e)}
+          color={Palette.OATMEAL[0]}
+          onClick={() => setBackgroundColor(Palette.OATMEAL[0])}
         />
         <Category
-          color={Palette.b}
-          onClick={() => setBackgroundColor(Palette.b)}
+          color={Palette.DEEP_BLUE[0]}
+          onClick={() => setBackgroundColor(Palette.DEEP_BLUE[0])}
         />
         <Category
-          color={Palette.c}
-          onClick={() => setBackgroundColor(Palette.c)}
+          color={Palette.BROWN[0]}
+          onClick={() => setBackgroundColor(Palette.BROWN[0])}
         />
         <Category
-          color={Palette.d}
-          onClick={() => setBackgroundColor(Palette.d)}
+          color={Palette.PINK[0]}
+          onClick={() => setBackgroundColor(Palette.PINK[0])}
         />
         <IConButton>
           <AiOutlinePlusCircle size="24" onClick={onClickSaveAddTodo} />

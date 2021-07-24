@@ -1,29 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import Menu from "./menu";
 import TodoCard from "./todoCard";
 import AddTodoCard from "./addTodoCard";
-
-const ContentWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  border: 2px solid #dddddd;
-  border-radius: 0 0 32px 32px;
-  height: 800px;
-`;
-
-const ShowTodo = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
-`;
-
-const NoneCard = styled.div``;
 
 const TodoContent = () => {
   const [currentCategory, setCurrentCategory] = useState("all");
@@ -61,19 +41,29 @@ const TodoContent = () => {
     },
   ]);
 
-  useEffect(() => {
-    return () => {};
-  }, [todoList.addTodoCard]);
+  // const receivedData = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       "https://gamsung-coding.shop/api/v1/todo?memberId=1&status=TODO"
+  //     );
+  //     setTodoList(data);
+  //   } catch (e) {
+  //     console.log(`${e.response.data.message}`);
+  //   }
+  // };
 
   const onClickAddTodo = (addItem) => {
-    setTodoList((prevState) =>
-      prevState.concat({
-        color: addItem.color,
-        todoContent: addItem.todoContent,
-        date: "2021.07.24",
-      })
-    );
+    // axios.post("https://gamsung-coding.shop/api/v1/todo", addItem, {
+    //   headers: {
+    //     Authorization: localStorage.getItem("userKey"),
+    //   },
+    // });
+    // receivedData();
   };
+
+  // useEffect(() => {
+  //   receivedData();
+  // }, []);
 
   return (
     <ContentWrap>
@@ -111,5 +101,26 @@ const TodoContent = () => {
     </ContentWrap>
   );
 };
+
+const ContentWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  border: 2px solid #dddddd;
+  border-radius: 0 0 32px 32px;
+  height: 800px;
+`;
+
+const ShowTodo = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+`;
+
+const NoneCard = styled.div``;
 
 export default TodoContent;
