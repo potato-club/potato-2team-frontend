@@ -1,29 +1,31 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 const RegisterForm = () => {
+  const history = useHistory();
   const url = "";
   const { register, handleSubmit, watch, errors } = useForm();
   const password = useRef();
   password.current = watch("password");
 
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     // axios로 넘어가는 데이터 처리예정 
     // 처리 후 엔드포인트 설정 및 로그인 리턴
-  //   axios.post(url, {
-  //     name: data.name,
-  //     email: data.email,
-  //     birth: data.birth,
-  //     password: data.password
-  //   })
-  //   .then(res => {
-  //     console.log(res.data)
-  //   })
-  //   console.log('data', data)
+  try {
+    await axios.post('https://gamsung-coding.shop/api/v1/join', {
+        name: data.name,
+        email: data.email,
+        birth: data.birth,
+        password: data.password
+      })
+    history.push('/')
+  } catch (e) {
+    console.log("에러발생!");
+  }
   };
 
   return (

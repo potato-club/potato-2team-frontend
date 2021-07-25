@@ -12,10 +12,10 @@ const LoginForm = () => {
   });
 
   const onChangeForm = (e) => {
-    setLoginData({
-      ...loginData,
+    setLoginData((prevState) => ({
+      ...prevState,
       [e.target.name]: e.target.value,
-    });
+    }))
   };
 
   const loginSubmit = async () => {
