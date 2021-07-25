@@ -24,7 +24,7 @@ const RegisterForm = () => {
   //     console.log(res.data)
   //   })
   //   console.log('data', data)
-  // };
+  };
 
   return (
   

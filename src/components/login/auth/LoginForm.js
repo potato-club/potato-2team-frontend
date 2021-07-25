@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 
 const LoginForm = () => {
+  const history = useHistory();
   const [loginData, setLoginData] = useState({
-    userId: "",
-    userPwd: "",
+    email: "",
+    password: "",
   });
 
   const onChangeForm = (e) => {
@@ -14,26 +16,27 @@ const LoginForm = () => {
       ...loginData,
       [e.target.name]: e.target.value,
     });
-    console.log("롸:", loginData);
   };
 
   const loginSubmit = async () => {
     try {
-      console.log("//await // 보내는 뭐시기 axios~~~~");
+      const {data} = await axios.post('https://gamsung-coding.shop/api/v1/login', loginData)
+      localStorage.setItem('userKey', data.data)
+      history.push('main')
     } catch (e) {
       console.log("에러발생!");
     }
-    //다른페이지 넘겨주자
+    
   };
 
   return (
     <>
       <PageExplans>로그인</PageExplans>
       <Label>이메일</Label>
-      <Input name="userId" placeholder="이메일" onChange={onChangeForm} />
+      <Input name="email" placeholder="이메일" onChange={onChangeForm} />
       <Label>비밀번호</Label>
       <Input
-        name="userPwd"
+        name="password"
         type="password"
         placeholder="비밀번호"
         onChange={onChangeForm}
