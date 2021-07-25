@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import {
   AiOutlineCheckCircle,
@@ -8,23 +8,8 @@ import {
 import { Palette } from "../../constants/defaultColor";
 
 const TodoCard = ({ color, todoContent, date }) => {
-  const [backgoundColor, setBackgoundColor] = useState("");
-
-  useEffect(() => {
-    if (color === "BLUE") {
-      setBackgoundColor(Palette.BLUE[0]);
-    } else if (color === "DEEP_BLUE") {
-      setBackgoundColor(Palette.DEEP_BLUE[0]);
-    } else if (color === "BROWN") {
-      setBackgoundColor(Palette.BROWN[0]);
-    } else if (color === "PINK") {
-      setBackgoundColor(Palette.PINK[0]);
-    } else if (color === "OATMEAL") {
-      setBackgoundColor(Palette.OATMEAL[0]);
-    }
-  }, []);
   return (
-    <CardWrap color={backgoundColor}>
+    <CardWrap color={Palette[color]}>
       <TopWrap>
         <IConButton>
           <AiOutlineEdit size="24" />

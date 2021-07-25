@@ -4,6 +4,7 @@ import axios from "axios";
 import Menu from "./menu";
 import TodoCard from "./todoCard";
 import AddTodoCard from "./addTodoCard";
+import { Palette } from "../../constants/defaultColor";
 
 const TodoContent = () => {
   const [currentCategory, setCurrentCategory] = useState("all");
@@ -82,7 +83,7 @@ const TodoContent = () => {
         )}
         {todoList.length ? (
           todoList.reduce((prev, next, cI) => {
-            if (currentCategory === "all" || next.color === currentCategory) {
+            if (currentCategory === "all" || Palette[next.color] === currentCategory) {
               prev.push(
                 <TodoCard
                   key={cI}
