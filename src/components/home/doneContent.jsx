@@ -4,48 +4,15 @@ import axios from "axios";
 import TodoCard from "./todoCard";
 
 export const DoneContent = () => {
-  const [doneList, setDoneList] = useState([
-    {
-      color: "BLUE",
-      todoContent: "투두 리스트 작성",
-      date: "2021.07.10",
-    },
-    {
-      color: "BROWN",
-      todoContent: "학교갔다가 잠자기",
-      date: "2021.07.10",
-    },
-    {
-      color: "PINK",
-      todoContent: "수업 자료 만들기",
-      date: "2021.07.10",
-    },
-    {
-      color: "DEEP_BLUE",
-      todoContent: "10시전에 일어나기",
-      date: "2021.07.10",
-    },
-    {
-      color: "OATMEAL",
-      todoContent: "알고리즘 과제하기",
-      date: "2021.07.10",
-    },
-    {
-      color: "PINK",
-      todoContent: "중국어 워크북 P.26~29",
-      date: "2021.07.10",
-    },
-  ]);
+  const [doneList, setDoneList] = useState([]);
 
   const receivedData = async () => {
     try {
       const { data } = await axios.get(
-        "https://gamsung-coding.shop/api/v1/todo?status=DONE",
-        {
-          Headers: {
-            Authorization:
-              "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ5ZXJpbWtva28iLCJleHAiOjE2MjcxMTQ0NDksIm1lbWJlcklkIjoxfQ.G_1LXXfLpLviaRGGXLBgk3IYhVbbVfq2HM9mozR8YxE",
-          },
+        "https://gamsung-coding.shop/api/v1/todo?status=DONE",{
+          headers: {
+            Authorization: localStorage.getItem("userKey"),
+          }
         }
       );
       setDoneList(data);

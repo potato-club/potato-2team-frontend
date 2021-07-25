@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import {
   AiOutlineCheckCircle,
-  AiOutlineEdit,
-  AiOutlineDelete,
+  // AiOutlineEdit,
+  // AiOutlineDelete,
 } from "react-icons/ai";
 import { Palette } from "../../constants/defaultColor";
 
@@ -11,9 +11,9 @@ const TodoCard = ({ color, todoContent, date }) => {
   return (
     <CardWrap color={Palette[color]}>
       <TopWrap>
-        <IConButton>
+        {/* <IConButton>
           <AiOutlineEdit size="24" />
-        </IConButton>
+        </IConButton> */}
         <IConButton>
           <AiOutlineCheckCircle size="24" />
         </IConButton>
@@ -21,9 +21,9 @@ const TodoCard = ({ color, todoContent, date }) => {
       <MiddleWarp>{todoContent}</MiddleWarp>
       <BottomWarp>
         <CreateDate>{date}</CreateDate>
-        <IConButton>
+        {/* <IConButton>
           <AiOutlineDelete size="24" />
-        </IConButton>
+        </IConButton> */}
       </BottomWarp>
     </CardWrap>
   );

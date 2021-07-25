@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Menu from "./menu";
 import TodoCard from "./todoCard";
@@ -7,64 +8,37 @@ import AddTodoCard from "./addTodoCard";
 import { Palette } from "../../constants/defaultColor";
 
 const TodoContent = () => {
+  const history = useHistory();
   const [currentCategory, setCurrentCategory] = useState("all");
   const [addTodoCard, setAddTodoCard] = useState(0);
-  const [todoList, setTodoList] = useState([
-    {
-      color: "BLUE",
-      todoContent: "투두 리스트 작성",
-      date: "2021.07.10",
-    },
-    {
-      color: "BROWN",
-      todoContent: "학교갔다가 잠자기",
-      date: "2021.07.10",
-    },
-    {
-      color: "PINK",
-      todoContent: "수업 자료 만들기",
-      date: "2021.07.10",
-    },
-    {
-      color: "DEEP_BLUE",
-      todoContent: "10시전에 일어나기",
-      date: "2021.07.10",
-    },
-    {
-      color: "OATMEAL",
-      todoContent: "알고리즘 과제하기",
-      date: "2021.07.10",
-    },
-    {
-      color: "PINK",
-      todoContent: "중국어 워크북 P.26~29",
-      date: "2021.07.10",
-    },
-  ]);
+  const [todoList, setTodoList] = useState([]);
 
-  // const receivedData = async () => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       "https://gamsung-coding.shop/api/v1/todo?memberId=1&status=TODO"
-  //     );
-  //     setTodoList(data);
-  //   } catch (e) {
-  //     console.log(`${e.response.data.message}`);
-  //   }
-  // };
-
-  const onClickAddTodo = (addItem) => {
-    // axios.post("https://gamsung-coding.shop/api/v1/todo", addItem, {
-    //   headers: {
-    //     Authorization: localStorage.getItem("userKey"),
-    //   },
-    // });
-    // receivedData();
+  const receivedData = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://gamsung-coding.shop/api/v1/todo?status=TODO", {
+          headers: {
+            Authorization: localStorage.getItem("userKey"),
+          }
+        }
+      );
+      setTodoList(data.data);
+    } catch (e) {
+      console.log(`${e.response.data.message}`);
+    }
   };
 
-  // useEffect(() => {
-  //   receivedData();
-  // }, []);
+  const onClickAddTodo = (addItem) => {
+    axios.post("https://gamsung-coding.shop/api/v1/todo", addItem, {
+      headers: {
+        Authorization: localStorage.getItem("userKey"),
+      },
+    });
+  };
+
+  useEffect(() => {
+    receivedData();
+  }, [addTodoCard]);
 
   return (
     <ContentWrap>
@@ -88,8 +62,8 @@ const TodoContent = () => {
                 <TodoCard
                   key={cI}
                   color={next.color}
-                  todoContent={next.todoContent}
-                  date={next.date}
+                  todoContent={next.content}
+                  date={next.dateTime}
                 />
               );
             }

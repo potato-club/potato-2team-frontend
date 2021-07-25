@@ -6,7 +6,6 @@ import axios from "axios";
 
 const RegisterForm = () => {
   const history = useHistory();
-  const url = "";
   const { register, handleSubmit, watch, errors } = useForm();
   const password = useRef();
   password.current = watch("password");

@@ -5,7 +5,7 @@ import TodoContent from "./todoContent";
 import DoneContent from "./doneContent";
 
 const HomeMain = () => {
-  const [showTodoDone, setShowTodoDone] = useState("done");
+  const [showTodoDone, setShowTodoDone] = useState("todo");
   return (
     <Wrapper>
       <GlobalStyle />

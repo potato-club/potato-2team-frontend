@@ -14,11 +14,33 @@ const AddTodoCard = ({ setAddTodoCard, onClickAddTodo }) => {
   };
 
   const onClickSaveAddTodo = () => {
-    let temp = {
-      color: backgroundColor[1],
-      todoContent: todoContent,
+    let temp = "";
+    console.log(backgroundColor)
+    switch (backgroundColor) {
+      case "#A7C4DA":
+        temp = "BLUE";
+        break;
+      case "#967A6D":
+        temp = "BROWN";
+        break;
+      case "#E5BBB4":
+        temp = "PINK";
+        break;
+      case "#E4D8D3":
+        temp = "OATMEAL";
+        break;
+      case "#818D90":
+        temp = "DEEP_BLUE";
+        break;         
+      default:
+        break; 
+    }
+    console.log(temp)
+    const data = {
+      color: temp,
+      content: todoContent,
     };
-    onClickAddTodo(temp);
+    onClickAddTodo(data);
     setAddTodoCard(0);
   };
 
