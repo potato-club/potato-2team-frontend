@@ -1,44 +1,27 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
 import Menu from "./menu";
 import TodoCard from "./todoCard";
 import AddTodoCard from "./addTodoCard";
 import { Palette } from "../../constants/defaultColor";
+import useTodo from "../../hooks/useTodo";
+import { setTodo } from "../core/api/todo";
 
 const TodoContent = () => {
-  const history = useHistory();
-  const [currentCategory, setCurrentCategory] = useState("all");
   const [addTodoCard, setAddTodoCard] = useState(0);
-  const [todoList, setTodoList] = useState([]);
-
-  const receivedData = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://gamsung-coding.shop/api/v1/todo?status=TODO", {
-          headers: {
-            Authorization: localStorage.getItem("userKey"),
-          }
-        }
-      );
-      setTodoList(data.data);
-    } catch (e) {
-      console.log(`${e.response.data.message}`);
-    }
-  };
+  const [updateCheck, setUpdateCheck] = useState(0);
+  const [currentCategory, setCurrentCategory] = useState("all");
+  const { todoList } = useTodo(updateCheck, "TODO");
 
   const onClickAddTodo = (addItem) => {
-    axios.post("https://gamsung-coding.shop/api/v1/todo", addItem, {
-      headers: {
-        Authorization: localStorage.getItem("userKey"),
-      },
+    const data = setTodo(`https://gamsung-coding.shop/api/v1/todo`, addItem);
+    data.then(() => {
+      setAddTodoCard(0);
+      setUpdateCheck((prevState) => !prevState);
     });
   };
 
-  useEffect(() => {
-    receivedData();
-  }, [addTodoCard]);
+  useEffect(() => {}, [updateCheck]);
 
   return (
     <ContentWrap>
@@ -51,19 +34,26 @@ const TodoContent = () => {
           <AddTodoCard
             setAddTodoCard={setAddTodoCard}
             onClickAddTodo={onClickAddTodo}
+            setUpdateCheck={setUpdateCheck}
           />
         ) : (
           <NoneCard />
         )}
-        {todoList.length ? (
-          todoList.reduce((prev, next, cI) => {
-            if (currentCategory === "all" || Palette[next.color] === currentCategory) {
+        {todoList ? (
+          todoList.reduce((prev, next) => {
+            if (
+              currentCategory === "all" ||
+              Palette[next.color] === currentCategory
+            ) {
               prev.push(
                 <TodoCard
-                  key={cI}
+                  key={next.id}
+                  id={next.id}
                   color={next.color}
                   todoContent={next.content}
                   date={next.dateTime}
+                  todo="1"
+                  setUpdateCheck={setUpdateCheck}
                 />
               );
             }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { DefaultColor, Palette } from "../../constants/defaultColor";
 
-const AddTodoCard = ({ setAddTodoCard, onClickAddTodo }) => {
+const AddTodoCard = ({ setAddTodoCard, onClickAddTodo, setUpdateCheck }) => {
   const [backgroundColor, setBackgroundColor] = useState(DefaultColor);
   const [todoContent, setTodoContent] = useState("");
 
@@ -15,7 +15,6 @@ const AddTodoCard = ({ setAddTodoCard, onClickAddTodo }) => {
 
   const onClickSaveAddTodo = () => {
     let temp = "";
-    console.log(backgroundColor)
     switch (backgroundColor) {
       case "#A7C4DA":
         temp = "BLUE";
@@ -31,17 +30,15 @@ const AddTodoCard = ({ setAddTodoCard, onClickAddTodo }) => {
         break;
       case "#818D90":
         temp = "DEEP_BLUE";
-        break;         
+        break;
       default:
-        break; 
+        break;
     }
-    console.log(temp)
     const data = {
       color: temp,
       content: todoContent,
     };
     onClickAddTodo(data);
-    setAddTodoCard(0);
   };
 
   const setAddTodoHandler = useCallback(

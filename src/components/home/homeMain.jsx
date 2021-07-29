@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-
+import useUserInfo from "../../hooks/useUserInfo";
 import TodoContent from "./todoContent";
 import DoneContent from "./doneContent";
 
 const HomeMain = () => {
   const [showTodoDone, setShowTodoDone] = useState("todo");
+  const { userInfo } = useUserInfo();
   return (
     <Wrapper>
       <GlobalStyle />
@@ -19,7 +20,7 @@ const HomeMain = () => {
               Done
             </TodoDoneButton>
           </ContentStateWrap>
-          <UserName>UserName</UserName>
+          <UserName>{userInfo}</UserName>
         </HeaderWrap>
         {showTodoDone === "todo" ? <TodoContent /> : <DoneContent />}
       </HomeWrap>

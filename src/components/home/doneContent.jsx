@@ -1,35 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import axios from "axios";
 import TodoCard from "./todoCard";
+import useTodo from "../../hooks/useTodo";
 
 export const DoneContent = () => {
-  const [doneList, setDoneList] = useState([]);
-
-  const receivedData = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://gamsung-coding.shop/api/v1/todo?status=DONE",{
-          headers: {
-            Authorization: localStorage.getItem("userKey"),
-          }
-        }
-      );
-      setDoneList(data);
-    } catch (e) {
-      console.log(`${e.response.data.message}`);
-    }
-  };
-
-  useEffect(() => {
-    receivedData();
-  }, []);
+  const { todoList: doneList } = useTodo(0, "DONE");
 
   return (
     <ContentWrap>
-      {doneList.length ? (
-        doneList.map(({ color, todoContent, date }) => (
-          <TodoCard color={color} todoContent={todoContent} date={date} />
+      {doneList ? (
+        doneList.map(({ id, color, content, dateTime }) => (
+          <TodoCard
+            key={id}
+            id={id}
+            color={color}
+            todoContent={content}
+            date={dateTime}
+            todo="0"
+          />
         ))
       ) : (
         <NoneCard />

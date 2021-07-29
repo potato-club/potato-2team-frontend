@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
-
 const LoginForm = () => {
   const history = useHistory();
   const [loginData, setLoginData] = useState({
@@ -15,18 +14,20 @@ const LoginForm = () => {
     setLoginData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
-    }))
+    }));
   };
 
   const loginSubmit = async () => {
     try {
-      const {data} = await axios.post('https://gamsung-coding.shop/api/v1/login', loginData)
-      localStorage.setItem('userKey', data.data)
-      history.push('main')
+      const { data } = await axios.post(
+        "https://gamsung-coding.shop/api/v1/login",
+        loginData
+      );
+      localStorage.setItem("userKey", data.data);
+      history.push("main");
     } catch (e) {
       console.log("에러발생!");
     }
-    
   };
 
   return (
@@ -47,10 +48,7 @@ const LoginForm = () => {
   );
 };
 
-
 export default LoginForm;
-
-
 
 const PageExplans = styled.div`
   display: flex;

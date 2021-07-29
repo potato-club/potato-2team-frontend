@@ -2,28 +2,56 @@ import React from "react";
 import styled from "styled-components";
 import {
   AiOutlineCheckCircle,
-  // AiOutlineEdit,
-  // AiOutlineDelete,
+  AiOutlineEdit,
+  AiOutlineDelete,
 } from "react-icons/ai";
 import { Palette } from "../../constants/defaultColor";
+import { updateTodo, deleteTodo } from "../core/api/todo";
 
-const TodoCard = ({ color, todoContent, date }) => {
+const TodoCard = ({ id, color, todoContent, date, todo, setUpdateCheck }) => {
+  const onclickCompletionTodo = () => {
+    console.log("ghkrdls: ", {
+      color: color,
+      content: todoContent,
+      status: "DONE",
+    });
+    const data = updateTodo(`https://gamsung-coding.shop/api/v1/todo/${id}`, {
+      color: color,
+      content: todoContent,
+      status: "DONE",
+    });
+    data.then(() => {
+      setUpdateCheck((prevState) => !prevState);
+    });
+  };
+
+  const onclickDeleteTodo = () => {
+    const data = deleteTodo(`https://gamsung-coding.shop/api/v1/todo/${id}`);
+    data.then(() => {
+      setUpdateCheck((prevState) => !prevState);
+    });
+  };
+
   return (
     <CardWrap color={Palette[color]}>
-      <TopWrap>
-        {/* <IConButton>
-          <AiOutlineEdit size="24" />
-        </IConButton> */}
-        <IConButton>
-          <AiOutlineCheckCircle size="24" />
-        </IConButton>
-      </TopWrap>
+      {todo === "1" ? (
+        <TopWrap>
+          <IConButton>
+            <AiOutlineEdit size="24" />
+          </IConButton>
+          <IConButton onClick={onclickCompletionTodo}>
+            <AiOutlineCheckCircle size="24" />
+          </IConButton>
+        </TopWrap>
+      ) : (
+        <TopWrap />
+      )}
       <MiddleWarp>{todoContent}</MiddleWarp>
       <BottomWarp>
         <CreateDate>{date}</CreateDate>
-        {/* <IConButton>
+        <IConButton onClick={onclickDeleteTodo}>
           <AiOutlineDelete size="24" />
-        </IConButton> */}
+        </IConButton>
       </BottomWarp>
     </CardWrap>
   );
